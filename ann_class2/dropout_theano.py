@@ -131,11 +131,9 @@ class ANN(object):
         for h, p in zip(self.hidden_layers, self.dropout_rates[:-1]):
             Z = h.forward(p * Z)
         return T.nnet.softmax((self.dropout_rates[-1] * Z).dot(self.W) + self.b)
-
     def predict(self, X):
         pY = self.forward_predict(X)
         return T.argmax(pY, axis=1)
-
 def error_rate(p, t):
     return np.mean(p != t)
 def relu(a):
@@ -145,6 +143,5 @@ def main():
     X, Y = get_normalized_data()
     ann = ANN([500, 300], [0.8, 0.5, 0.5])
     ann.fit(X, Y, show_fig=True)
-
 if __name__ == '__main__':
     main()
