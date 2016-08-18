@@ -106,6 +106,5 @@ def main():
     X, Y = get_normalized_data()
     ann = ANN([500, 300], [0.8, 0.5, 0.5])
     ann.fit(X, Y)
-
 if __name__ == '__main__':
     main()
