@@ -93,17 +93,14 @@ class ANN(object):
         for h, p in zip(self.hidden_layers, self.dropout_rates[1:]):
             Z = h.forward(Z) * p
         return tf.matmul(Z, self.W) + self.b
-
+        
     def predict(self, X):
         pY = self.forward_predict(X)
         return tf.argmax(pY, 1)
-
 def error_rate(p, t):
     return np.mean(p != t)
-
 def relu(a):
     return a * (a > 0)
-
 def main():
     # step 1: get the data and define all the usual variables
     X, Y = get_normalized_data()
