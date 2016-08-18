@@ -1,6 +1,5 @@
 # A 1-hidden-layer neural network in Theano.
 # This code is not optimized for speed.
-# It's just to get something working, using the principles we know.
 import numpy as np
 import theano
 import theano.tensor as T
@@ -80,7 +79,6 @@ class ANN(object):
         ] + [
             (dp, mu*dp - learning_rate*T.grad(cost, p)/T.sqrt(c + 10e-10)) for p, c, dp in zip(self.params, cache, dparams)
         ]
-
         # momentum only
         # updates = [
         #     (p, p + mu*dp - learning_rate*T.grad(cost, p)) for p, dp in zip(self.params, dparams)
@@ -92,7 +90,6 @@ class ANN(object):
             inputs=[thX, thY],
             updates=updates
         )
-
         # for evaluation and prediction
         pY_predict = self.forward_predict(thX)
         cost_predict = -T.mean(T.log(pY_predict[T.arange(thY.shape[0]), thY]))
