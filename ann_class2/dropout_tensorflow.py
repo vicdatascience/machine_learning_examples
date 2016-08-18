@@ -1,12 +1,8 @@
-# For the class Data Science: Practical Deep Learning Concepts in Theano and TensorFLow
-# https://www.udemy.com/data-science-deep-learning-in-theano-tensorflow
 import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
-
 from util import get_normalized_data
 from sklearn.utils import shuffle
-
 
 class HiddenLayer(object):
     def __init__(self, M1, M2):
@@ -20,7 +16,6 @@ class HiddenLayer(object):
 
     def forward(self, X):
         return tf.nn.relu(tf.matmul(X, self.W) + self.b)
-
 
 class ANN(object):
     def __init__(self, hidden_layer_sizes, p_keep):
@@ -82,7 +77,6 @@ class ANN(object):
                         costs.append(c)
                         e = error_rate(Yvalid, p)
                         print "i:", i, "j:", j, "nb:", n_batches, "cost:", c, "error rate:", e
-        
         plt.plot(costs)
         plt.show()
 
@@ -104,22 +98,17 @@ class ANN(object):
         pY = self.forward_predict(X)
         return tf.argmax(pY, 1)
 
-
 def error_rate(p, t):
     return np.mean(p != t)
-
 
 def relu(a):
     return a * (a > 0)
 
-
 def main():
     # step 1: get the data and define all the usual variables
     X, Y = get_normalized_data()
-
     ann = ANN([500, 300], [0.8, 0.5, 0.5])
     ann.fit(X, Y)
-
 
 if __name__ == '__main__':
     main()
