@@ -146,7 +146,6 @@ def relu(a):
 def main():
     # step 1: get the data and define all the usual variables
     X, Y = get_normalized_data()
-
     ann = ANN([500, 300], [0.8, 0.5, 0.5])
     ann.fit(X, Y, show_fig=True)
 
