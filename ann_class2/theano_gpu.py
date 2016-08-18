@@ -69,13 +69,11 @@ def main():
         inputs=[thX, thT],
         updates=[(W1, update_W1), (b1, update_b1), (W2, update_W2), (b2, update_b2)],
     )
-
     # create another function for this because we want it over the whole dataset
     get_prediction = theano.function(
         inputs=[thX, thT],
         outputs=[cost, prediction],
     )
-
     t0 = datetime.now()
     for i in xrange(max_iter):
         for j in xrange(n_batches):
