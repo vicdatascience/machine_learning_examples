@@ -1,10 +1,6 @@
 # A 1-hidden-layer neural network in Theano.
 # This code is not optimized for speed.
 # It's just to get something working, using the principles we know.
-
-# For the class Data Science: Practical Deep Learning Concepts in Theano and TensorFLow
-# https://www.udemy.com/data-science-deep-learning-in-theano-tensorflow
-
 import numpy as np
 import theano
 import theano.tensor as T
@@ -12,7 +8,6 @@ import matplotlib.pyplot as plt
 from theano.tensor.shared_randomstreams import RandomStreams
 from util import get_normalized_data
 from sklearn.utils import shuffle
-
 
 class HiddenLayer(object):
     def __init__(self, M1, M2, an_id):
@@ -27,7 +22,6 @@ class HiddenLayer(object):
 
     def forward(self, X):
         return T.nnet.relu(X.dot(self.W) + self.b)
-
 
 class ANN(object):
     def __init__(self, hidden_layer_sizes, p_keep):
@@ -145,22 +139,16 @@ class ANN(object):
         pY = self.forward_predict(X)
         return T.argmax(pY, axis=1)
 
-
 def error_rate(p, t):
     return np.mean(p != t)
-
-
 def relu(a):
     return a * (a > 0)
-
-
 def main():
     # step 1: get the data and define all the usual variables
     X, Y = get_normalized_data()
 
     ann = ANN([500, 300], [0.8, 0.5, 0.5])
     ann.fit(X, Y, show_fig=True)
-
 
 if __name__ == '__main__':
     main()
